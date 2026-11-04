@@ -9,6 +9,35 @@
 #endif
 
 / {
+    macros {
+        scrl_up: scrl_up {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Scroll Up";
+            bindings = <&macro_press &msc SCRL_UP>, <&macro_pause_for_release>, <&macro_release &msc SCRL_UP>;
+        };
+        scrl_dn: scrl_dn {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Scroll Down";
+            bindings = <&macro_press &msc SCRL_DOWN>, <&macro_pause_for_release>, <&macro_release &msc SCRL_DOWN>;
+        };
+        scrl_lt: scrl_lt {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Scroll Left";
+            bindings = <&macro_press &msc SCRL_LEFT>, <&macro_pause_for_release>, <&macro_release &msc SCRL_LEFT>;
+        };
+        scrl_rt: scrl_rt {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            display-name = "Scroll Right";
+            bindings = <&macro_press &msc SCRL_RIGHT>, <&macro_pause_for_release>, <&macro_release &msc SCRL_RIGHT>;
+        };
+    };
+};
+
+/ {
     combos {
         compatible = "zmk,combos";
 
