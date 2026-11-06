@@ -8,31 +8,39 @@
 #include <behaviors/hires_dial.dtsi>
 #endif
 
+/*
+ * Scroll speed for the Studio-selectable Scroll Up/Down/Left/Right macros,
+ * in wheel notches per second while the key is held. macOS ignores HID
+ * high-resolution scrolling, so one notch is the smallest step; keep this
+ * low so holding the key scrolls gradually and a short tap moves one notch.
+ */
+#define SCROLL_SPEED 4
+
 / {
     macros {
         scrl_up: scrl_up {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             display-name = "Scroll Up";
-            bindings = <&macro_press &msc SCRL_UP>, <&macro_pause_for_release>, <&macro_release &msc SCRL_UP>;
+            bindings = <&macro_press &msc MOVE_Y(SCROLL_SPEED)>, <&macro_pause_for_release>, <&macro_release &msc MOVE_Y(SCROLL_SPEED)>;
         };
         scrl_dn: scrl_dn {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             display-name = "Scroll Down";
-            bindings = <&macro_press &msc SCRL_DOWN>, <&macro_pause_for_release>, <&macro_release &msc SCRL_DOWN>;
+            bindings = <&macro_press &msc MOVE_Y(-SCROLL_SPEED)>, <&macro_pause_for_release>, <&macro_release &msc MOVE_Y(-SCROLL_SPEED)>;
         };
         scrl_lt: scrl_lt {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             display-name = "Scroll Left";
-            bindings = <&macro_press &msc SCRL_LEFT>, <&macro_pause_for_release>, <&macro_release &msc SCRL_LEFT>;
+            bindings = <&macro_press &msc MOVE_X(-SCROLL_SPEED)>, <&macro_pause_for_release>, <&macro_release &msc MOVE_X(-SCROLL_SPEED)>;
         };
         scrl_rt: scrl_rt {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             display-name = "Scroll Right";
-            bindings = <&macro_press &msc SCRL_RIGHT>, <&macro_pause_for_release>, <&macro_release &msc SCRL_RIGHT>;
+            bindings = <&macro_press &msc MOVE_X(SCROLL_SPEED)>, <&macro_pause_for_release>, <&macro_release &msc MOVE_X(SCROLL_SPEED)>;
         };
     };
 };
